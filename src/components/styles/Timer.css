@@ -1,0 +1,74 @@
+.pomodoro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pomodoro-container {
+    background-color: var(--primary-background);
+    width: 500px;
+    border-radius: var(--big-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    transition: 1.6s;
+    border: 1px solid #f1f1f1;
+}
+
+.background-progress {
+    background-color: var(--timer-background);
+    border: 1px solid var(--timer-background);
+}
+
+.pomodoro-options ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    list-style: none;
+}
+
+.pomodoro-options ul li {
+    border-radius: var(--lil-radius);
+    padding: .2rem .6rem;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #3849597a;
+    font-weight: 700;
+    border: 1px solid #f1f1f1;
+}
+
+.pomodoro-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pomodoro-timer .timer {
+    padding-block: 1.2rem .8rem;
+}
+
+.pomodoro-timer .timer p {
+    font-size: 6rem;
+    font-weight: 600;
+}
+
+.timer-btn button {
+    border: 1px solid #f1f1f1;
+    border-radius: var(--lil-radius);
+    color: var(--primary-background);
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: .6rem 2.6rem;
+    transition: 1.6s;
+}
+
+.timer-btn .pause-btn {
+    border: 1px solid #f1f1f1;
+    background-color: var(--primary-background);
+    color: var(--primary-font-color);
+}

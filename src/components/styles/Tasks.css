@@ -1,0 +1,48 @@
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+    padding-inline: 8rem;
+}
+
+.tasks h2 {
+    font-size: 2.6rem;
+    padding-bottom: 3rem;
+}
+
+.tasks-list {
+    width: 100%;
+}
+
+.form button {
+    color: var(--primary-background);
+    padding: .5rem 1rem;
+    border-radius: var(--lil-radius);
+    border: 2px solid #f1f1f1;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.task button {
+    background-color: var(--primary-background);
+    padding: .5rem 1rem;
+    border-radius: var(--lil-radius);
+    border: 2px solid #f1f1f1;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: .4s;
+}
+
+.tasks-row {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.task button:hover {
+    background-color: #f1f1f1;
+    color: var(--primary-background);
+}
