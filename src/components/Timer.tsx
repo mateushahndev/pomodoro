@@ -13,10 +13,56 @@ export default function Timer() {
 
     useEffect(() => {
         stopStopwatch();
-        if (option === "pomodoro") setSeconds(1500);
-        else if (option === "short") setSeconds(300);
-        else setSeconds(900);
+        if (option === "pomodoro") setSeconds(15);
+        else if (option === "short") setSeconds(3);
+        else setSeconds(9);
     }, [option]);
+
+    // --- BLOCO DOS ATALHOS ---
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const key = e.key.toLowerCase(); // Pegamos a tecla em minúsculo pra facilitar
+
+            // 1. Iniciar / Pausar (Espaço)
+            if (e.code === "Space") {
+                e.preventDefault(); 
+                if (timerProgress) {
+                    stopStopwatch();
+                } else {
+                    initStopwatch();
+                }
+            }
+
+            // 2. Resetar (R) - Apenas para o tempo atual da opção selecionada
+            if (key === "r") {
+                stopStopwatch();
+                if (option === "pomodoro") setSeconds(15);
+                else if (option === "short") setSeconds(3);
+                else setSeconds(9);
+            }
+
+            // 3. Mudar para Pomodoro (P)
+            if (key === "p") {
+                setOption("pomodoro");
+            }
+
+            // 4. Mudar para Pausa Curta (S)
+            if (key === "s") {
+                setOption("short");
+            }
+
+            // 5. Mudar para Pausa Longa (L)
+            if (key === "l") {
+                setOption("long");
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [timerProgress, option]); // Adicionamos 'option' aqui para o reset (R) saber qual tempo colocar
+    // -------------------------
 
     function stopwatchFormat(totalSeconds: number): string {
         const minutes = Math.floor(totalSeconds / 60);
@@ -24,16 +70,10 @@ export default function Timer() {
         return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
 
-// 1. Função de Transição: Agora ela APENAS muda a opção.
-    // O useEffect se encarregará de todo o resto (resetar tempo e parar timer).
-// 1. Centralize a troca. Não use "changeStopwatch" e "handleStageTransition" separadas.
-    // Use APENAS esta:
     function nextStage():void {
         if(option == "pomodoro") {
-
             setOption("short");
         } else {
-
             setOption("pomodoro");
         }
     }
@@ -42,16 +82,12 @@ export default function Timer() {
         if (timerProgress) return;
         setTimerProgress(true);
 
-        // O segredo está aqui:
         const id = setInterval(() => {
             setSeconds((prev) => {
                 if (prev <= 1) {
-                    // MATAR o intervalo antes de qualquer outra ação
                     clearInterval(id); 
                     intervalRef.current = null;
                     setTimerProgress(false);
-                    
-                    // Chamar a transição SÓ DEPOIS de limpar o motor
                     nextStage();
                     alarm();
                     return 0;
@@ -79,6 +115,9 @@ export default function Timer() {
         }, 5000);
     }
 
+    // Você pode remover a função timerKey antiga se quiser, 
+    // pois o useEffect acima já resolve tudo de forma global.
+
     return (
         <section className="pomodoro">
             <div className={`pomodoro-container ${timerProgress ? "background-progress" : ""}`}>
@@ -98,6 +137,7 @@ export default function Timer() {
                             className={timerProgress ? "pause-btn" : ""} 
                             onClick={timerProgress ? stopStopwatch : initStopwatch} 
                             type="button"
+                            // Removi o onKeyDown daqui para não dar conflito com o global
                         >
                             {timerProgress ? "PAUSAR" : "INICIAR"}
                         </button>

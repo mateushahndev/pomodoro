@@ -9,6 +9,7 @@ export default function Header() {
             </div>
             <nav className="header-nav">
                 <ul>
+                    {/* Item 1: Dicas */}
                     <li>
                         <Popup
                             trigger={<button className="nav-btn"> Dicas </button>}
@@ -19,12 +20,12 @@ export default function Header() {
                             {(close: () => void) => (
                                 <div className="modal-container">
                                     <div className="modal-header">
-                                        <h2>Como usar o Pomodoro? </h2>
+                                        <h2>Como usar o Pomodoro?</h2>
                                         <button className="close-btn" onClick={close}>&times;</button>
                                     </div>
                                     <div className="modal-body">
                                         <section className="tip-section">
-                                            <h3>Por que 25 minutos? </h3>
+                                            <h3>Por que 25 minutos?</h3>
                                             <p>Esse tempo é o "ponto doce" da concentração. É curto o suficiente para não te exaurir, mas longo o suficiente para entrar em estado de <strong>flow</strong>.</p>
                                         </section>
 
@@ -45,12 +46,36 @@ export default function Header() {
                                     </div>
                                     <button className="confirm-btn" onClick={close}>Entendi!</button>
                                 </div>
-
-                                
                             )}
                         </Popup>
                     </li>
-                    <li><button className="nav-btn">Atalhos</button></li>
+
+                    {/* Item 2: Atalhos */}
+                   <li>
+                        <Popup
+                            trigger={<button className="nav-btn"> Atalhos </button>}
+                            modal
+                            nested
+                        >
+                            {/* @ts-ignore */}
+                            {(close: () => void) => (
+                                <div className="modal-container">
+                                    <div className="modal-header">
+                                        <h2>Atalhos do Teclado</h2>
+                                        <button className="close-btn" onClick={close}>&times;</button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <p><strong>Espaço:</strong> Iniciar ou Pausar o timer.</p>
+                                        <p><strong>R:</strong> Resetar o contador.</p>
+                                        <p><strong>P:</strong> Modo Foco (Pomodoro).</p>
+                                        <p><strong>S:</strong> Pausa Curta (Short break).</p>
+                                        <p><strong>L:</strong> Pausa Longa (Long break).</p>
+                                    </div>
+                                    <button className="confirm-btn" onClick={close}>Beleza!</button>
+                                </div>
+                            )}
+                        </Popup>
+                    </li>
                 </ul>
             </nav>
         </header>
