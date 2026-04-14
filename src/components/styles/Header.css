@@ -11,3 +11,101 @@ header .header-nav ul {
     list-style: none;
     gap: 2rem;
 }
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-font-color);
+    padding: 5px 10px;
+    transition: opacity 0.2s;
+}
+
+.nav-btn:hover {
+    opacity: 0.7;
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal-container {
+    background-color: var(--primary-background);
+    border: 1px solid var(--timer-background);
+    border-radius: var(--big-radius);
+    padding: 1.5rem;
+    min-width: 300px;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem; /* Aumentei um pouco o respiro */
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* Uni as duas declarações do modal-body aqui */
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    text-align: left;
+}
+
+/* Estilos das seções de dicas */
+.tip-section {
+    margin-bottom: 1.5rem;
+}
+
+.tip-section h3 {
+    font-size: 1rem;
+    color: var(--primary-font-color);
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--timer-background);
+    padding-left: 10px;
+}
+
+.tip-section p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #cbd5e0;
+}
+
+.confirm-btn {
+    width: 100%;
+    background-color: var(--timer-background);
+    border: none;
+    padding: 0.7rem; /* Um pouco mais encorpado */
+    border-radius: var(--lil-radius);
+    font-weight: bold;
+    margin-top: 1rem; /* Garante espaço pro conteúdo acima */
+    transition: background 0.2s;
+}
+
+.confirm-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Scrollbar */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--timer-background);
+    border-radius: 10px;
+}
