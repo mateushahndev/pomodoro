@@ -9,45 +9,12 @@ interface Task {
 }
 
 export default function Main() {
-    const [tasks, setTasks] = useState<Task[] | null>([{
-        id: 1,
-        title: "Criar site ecommerce"
-    }, 
-    {
-        id: 2,
-        title: "Criar jogo pateta assassino"
-    },
-    {
-        id: 3,
-        title: "Organizar planilha excel"
-    },
-    {
-        id: 4,
-        title: "Treinar poker"
-    },{
-        id: 5,
-        title: "Treinar poker"
-    },{
-        id: 6,
-        title: "Treinar poker"
-    },{
-        id: 7,
-        title: "Treinar poker"
-    },{
-        id: 8,
-        title: "Treinar poker"
-    },{
-        id: 9,
-        title: "Treinar poker"
-    },{
-        id: 10,
-        title: "Treinar poker"
-    },]);
+    const [tasks, setTasks] = useState<Task[] | null>(null);
 
     return (
         <main>
             <Timer />
-            <Tasks tasks={tasks} /> 
+            <Tasks tasks={tasks} setTasks={setTasks} /> 
         </main>
     )
 }

@@ -13,56 +13,45 @@ export default function Timer() {
 
     useEffect(() => {
         stopStopwatch();
-        if (option === "pomodoro") setSeconds(15);
-        else if (option === "short") setSeconds(3);
-        else setSeconds(9);
+        if (option === "pomodoro") setSeconds(1500);
+        else if (option === "short") setSeconds(300);
+        else setSeconds(900);
     }, [option]);
 
     // --- BLOCO DOS ATALHOS ---
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            const key = e.key.toLowerCase(); // Pegamos a tecla em minúsculo pra facilitar
+            // --- A MÁGICA ESTÁ AQUI ---
+            // Verifica se o elemento que está focado é um input ou textarea
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+                return; // Se estiver digitando, sai da função e não executa o timer
+            }
+            // --------------------------
 
-            // 1. Iniciar / Pausar (Espaço)
+            const key = e.key.toLowerCase();
+
             if (e.code === "Space") {
                 e.preventDefault(); 
-                if (timerProgress) {
-                    stopStopwatch();
-                } else {
-                    initStopwatch();
-                }
+                if (timerProgress) stopStopwatch();
+                else initStopwatch();
             }
 
-            // 2. Resetar (R) - Apenas para o tempo atual da opção selecionada
             if (key === "r") {
                 stopStopwatch();
-                if (option === "pomodoro") setSeconds(15);
-                else if (option === "short") setSeconds(3);
-                else setSeconds(9);
+                if (option === "pomodoro") setSeconds(1500);
+                else if (option === "short") setSeconds(300);
+                else setSeconds(900);
             }
 
-            // 3. Mudar para Pomodoro (P)
-            if (key === "p") {
-                setOption("pomodoro");
-            }
-
-            // 4. Mudar para Pausa Curta (S)
-            if (key === "s") {
-                setOption("short");
-            }
-
-            // 5. Mudar para Pausa Longa (L)
-            if (key === "l") {
-                setOption("long");
-            }
+            if (key === "p") setOption("pomodoro");
+            if (key === "s") setOption("short");
+            if (key === "l") setOption("long");
         };
 
         window.addEventListener("keydown", handleKeyDown);
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [timerProgress, option]); // Adicionamos 'option' aqui para o reset (R) saber qual tempo colocar
-    // -------------------------
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [timerProgress, option]);
 
     function stopwatchFormat(totalSeconds: number): string {
         const minutes = Math.floor(totalSeconds / 60);
@@ -114,9 +103,6 @@ export default function Timer() {
             audio.currentTime = 0;
         }, 5000);
     }
-
-    // Você pode remover a função timerKey antiga se quiser, 
-    // pois o useEffect acima já resolve tudo de forma global.
 
     return (
         <section className="pomodoro">

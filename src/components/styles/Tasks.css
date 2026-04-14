@@ -46,3 +46,104 @@
     background-color: #f1f1f1;
     color: var(--primary-background);
 }
+
+/* Container que agrupa o Label e o Input */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Aumenta o espaço entre o label e o input */
+    text-align: left;
+    margin-top: 10px;
+}
+
+.input-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-font-color);
+}
+
+/* O Input estilizado */
+.task-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--lil-radius);
+    
+    /* Cores baseadas no seu Timer */
+    background-color: var(--timer-background); 
+    color: var(--primary-font-color);
+    
+    /* Borda discreta para não sumir no fundo */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    font-size: 1rem;
+    outline: none; /* Remove aquela borda azul padrão do navegador */
+    transition: border-color 0.3s ease;
+}
+
+/* Efeito quando o usuário clica para digitar */
+.task-input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Ajuste na cor do texto de exemplo (placeholder) */
+.task-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.task-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--timer-background);
+    padding: 0.8rem 1rem;
+    border-radius: var(--lil-radius);
+    margin-bottom: 0.8rem;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.task-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.task-title {
+    flex: 1; /* Faz o texto ocupar todo o espaço central */
+    margin: 0 15px;
+    font-size: 1rem;
+    color: var(--primary-font-color);
+    text-align: left;
+}
+
+/* Estilo para tarefa concluída */
+.task-card.completed {
+    opacity: 0.5;
+}
+
+.task-card.completed .task-title {
+    text-decoration: line-through;
+}
+
+/* Botões de ação */
+.btn-check, .btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    transition: color 0.2s;
+}
+
+.btn-check:hover { color: #48bb78; }
+.btn-delete:hover { color: #f56565; }
+
+/* Ajuste no container das tarefas para não quebrar o layout */
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
