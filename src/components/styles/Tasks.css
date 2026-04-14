@@ -95,16 +95,15 @@
     display: flex;
     align-items: center;
     background-color: var(--timer-background);
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: var(--lil-radius);
-    margin-bottom: 0.8rem;
     transition: all 0.2s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
 }
 
 .task-card:hover {
     border-color: rgba(255, 255, 255, 0.2);
-    transform: translateX(5px);
 }
 
 .task-title {
@@ -142,8 +141,8 @@
 /* Ajuste no container das tarefas para não quebrar o layout */
 .tasks-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 18px;
     width: 100%;
-    max-width: 500px;
     margin: 0 auto;
 }
