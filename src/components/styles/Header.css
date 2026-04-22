@@ -44,7 +44,7 @@ header .header-nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem; /* Aumentei um pouco o respiro */
+    margin-bottom: 1.5rem;
 }
 
 .modal-header h2 {
@@ -58,7 +58,6 @@ header .header-nav ul {
     line-height: 1;
 }
 
-/* Uni as duas declarações do modal-body aqui */
 .modal-body {
     max-height: 400px;
     overflow-y: auto;
@@ -66,7 +65,6 @@ header .header-nav ul {
     text-align: left;
 }
 
-/* Estilos das seções de dicas */
 .tip-section {
     margin-bottom: 1.5rem;
 }
@@ -100,7 +98,6 @@ header .header-nav ul {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Scrollbar */
 .modal-body::-webkit-scrollbar {
     width: 6px;
 }

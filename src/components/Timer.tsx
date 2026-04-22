@@ -12,6 +12,13 @@ export default function Timer() {
     const endTimeRef = useRef<number | null>(null);
     const [audio] = useState<HTMLAudioElement>(new Audio('/assets/alarm.mp3'));
 
+    // Solicita permissão de notificação ao carregar
+    useEffect(() => {
+        if ("Notification" in window && Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+    }, []);
+
     useEffect(() => {
         stopStopwatch();
         if (option === "pomodoro") setSeconds(1500);
@@ -84,7 +91,7 @@ export default function Timer() {
             } else {
                 setSeconds((prev) => (prev !== remaining ? remaining : prev));
             }
-        }, 1000); // Voltamos para 1000ms, que é o ritmo natural do relógio
+        }, 1000);
 
         intervalRef.current = id;
     }
@@ -99,6 +106,15 @@ export default function Timer() {
 
     function alarm(): void {
         audio.play().catch(e => console.log("Erro ao tocar áudio:", e));
+        
+        // Dispara notificação nativa
+        if ("Notification" in window && Notification.permission === "granted") {
+            new Notification("Pomodoro Finalizado!", {
+                body: option === "pomodoro" ? "Hora de descansar!" : "Hora de focar!",
+                icon: "/favicon.ico" 
+            });
+        }
+
         setTimeout(() => {
             audio.pause();
             audio.currentTime = 0;
