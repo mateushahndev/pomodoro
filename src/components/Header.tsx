@@ -9,7 +9,6 @@ export default function Header() {
             </div>
             <nav className="header-nav">
                 <ul>
-                    {/* Item 1: Dicas */}
                     <li>
                         <Popup
                             trigger={<button className="nav-btn"> Dicas </button>}
@@ -49,8 +48,6 @@ export default function Header() {
                             )}
                         </Popup>
                     </li>
-
-                    {/* Item 2: Atalhos */}
                    <li>
                         <Popup
                             trigger={<button className="nav-btn"> Atalhos </button>}

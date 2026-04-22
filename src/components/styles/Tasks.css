@@ -78,6 +78,7 @@
     font-size: 1rem;
     outline: none; /* Remove aquela borda azul padrão do navegador */
     transition: border-color 0.3s ease;
+    margin-rigth: -10px
 }
 
 /* Efeito quando o usuário clica para digitar */
@@ -145,4 +146,8 @@
     gap: 18px;
     width: 100%;
     margin: 0 auto;
+}
+
+.modal-body {
+    padding-right: 0 !important; 
 }

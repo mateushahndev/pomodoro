@@ -18,8 +18,6 @@ export default function Tasks({tasks, setTasks}: TasksProps) {
     const [task, setTask] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // --- FUNÇÕES DE LÓGICA ---
-
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
         setTask(e.target.value);
     }
@@ -59,8 +57,6 @@ export default function Tasks({tasks, setTasks}: TasksProps) {
         );
     }
 
-    // --- RENDERIZAÇÃO ---
-
     return (
         <section className="tasks">
             <div className="tasks-header">
@@ -87,8 +83,6 @@ export default function Tasks({tasks, setTasks}: TasksProps) {
                             </button>
                         </div>
                     ))}
-
-                    {/* Botão de Adicionar e Popup */}
                     <div className="form">
                         <Popup
                             trigger={<button className="open-form">+ Adicionar Tarefa</button>}
@@ -99,7 +93,6 @@ export default function Tasks({tasks, setTasks}: TasksProps) {
                             }}
                         >
                             {((close: () => void) => {
-                                // Força o foco ao abrir o modal
                                 useEffect(() => {
                                     inputRef.current?.focus();
                                 }, []);
