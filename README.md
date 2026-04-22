@@ -1,75 +1,60 @@
-# React + TypeScript + Vite
+# Pomodoro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação de timer Pomodoro com gerenciamento de tarefas, desenvolvida em React com TypeScript. Combina o ciclo de foco e pausas da técnica Pomodoro com uma lista de tarefas persistida no navegador.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Timer
+- Três modos de temporizador: Pomodoro (25 min), Pausa Curta (5 min) e Pausa Longa (15 min)
+- Alternância automática entre Pomodoro e Pausa Curta ao fim de cada ciclo
+- Indicação visual de progresso com mudança de fundo do container durante a contagem
+- Alarme sonoro ao fim de cada ciclo
+- Notificações nativas do navegador ao fim de cada ciclo (com solicitação de permissão)
+- Atalhos de teclado: `Espaço` para iniciar/pausar, `R` para resetar, `P` para Pomodoro, `S` para Pausa Curta e `L` para Pausa Longa
 
-## React Compiler
+### Tarefas
+- Adição de tarefas via modal com foco automático no input
+- Confirmação de tarefa com `Enter` ou botão de salvar
+- Marcação de tarefa como concluída com indicação visual (riscado e opacidade reduzida)
+- Exclusão de tarefas individuais
+- Persistência das tarefas no `localStorage` — as tarefas são mantidas entre sessões
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Header
+- Modal de dicas sobre a técnica Pomodoro (por que 25 minutos, monotarefa, importância das pausas e ciclos longos)
+- Modal de atalhos de teclado disponíveis
 
-Note: This will impact Vite dev & build performances.
+## Tecnologias
 
-## Expanding the ESLint configuration
+- **React** — componentização e gerenciamento de estado com `useState`, `useEffect` e `useRef`
+- **TypeScript** — tipagem estática de props, estados e eventos
+- **reactjs-popup** — modais de dicas, atalhos e adição de tarefas
+- **lucide-react** — ícones de check e lixeira nas tarefas
+- **CSS3** — estilização por componente com variáveis CSS e media queries para responsividade mobile
+- **Web Notifications API** — notificações nativas do navegador
+- **localStorage** — persistência das tarefas entre sessões
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Estrutura do Projeto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+/
+└── src/
+    ├── App.tsx
+    ├── index.css
+    └── components/
+        ├── Header.tsx
+        ├── Main.tsx
+        ├── Timer.tsx
+        ├── Tasks.tsx
+        └── styles/
+            ├── Header.css
+            ├── Main.css
+            ├── Timer.css
+            └── Tasks.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Autor
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Mateus Hahn — mateushahn333@gmail.com
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- GitHub: [github.com/mateushahndev](https://github.com/mateushahndev)
+- LinkedIn: [linkedin.com/in/mateushahndev](https://www.linkedin.com/in/mateushahndev)
