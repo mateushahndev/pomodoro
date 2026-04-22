@@ -109,3 +109,34 @@ header .header-nav ul {
     background: var(--timer-background);
     border-radius: 10px;
 }
+
+.popup-content {
+    width: 90% !important;
+    max-width: 500px !important;
+    margin: 0 auto;
+}
+
+.modal-container {
+    background-color: var(--primary-background);
+    border: 1px solid var(--timer-background);
+    border-radius: var(--big-radius);
+    padding: 1.5rem;
+    width: 100%;
+}
+
+/**************** Mobile ****************/
+
+@media (max-width: 768px) {
+    header .header-nav ul li:nth-child(2) {
+        display: none;
+    }
+    
+    header {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    header .header-logotipo h1 { 
+        font-size: 1.5rem; 
+    }
+}

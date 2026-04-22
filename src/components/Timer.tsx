@@ -9,6 +9,7 @@ export default function Timer() {
     const [timerProgress, setTimerProgress] = useState<boolean>(false);
     
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const endTimeRef = useRef<number | null>(null);
     const [audio] = useState<HTMLAudioElement>(new Audio('/assets/alarm.mp3'));
 
     useEffect(() => {
@@ -18,16 +19,12 @@ export default function Timer() {
         else setSeconds(900);
     }, [option]);
 
-    // --- BLOCO DOS ATALHOS ---
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            // --- A MÁGICA ESTÁ AQUI ---
-            // Verifica se o elemento que está focado é um input ou textarea
             const target = e.target as HTMLElement;
             if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
-                return; // Se estiver digitando, sai da função e não executa o timer
+                return; 
             }
-            // --------------------------
 
             const key = e.key.toLowerCase();
 
@@ -67,23 +64,27 @@ export default function Timer() {
         }
     }
 
-    function initStopwatch():void {
+    function initStopwatch(): void {
         if (timerProgress) return;
         setTimerProgress(true);
 
+        endTimeRef.current = Date.now() + seconds * 1000;
+
         const id = setInterval(() => {
-            setSeconds((prev) => {
-                if (prev <= 1) {
-                    clearInterval(id); 
-                    intervalRef.current = null;
-                    setTimerProgress(false);
-                    nextStage();
-                    alarm();
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
+            const now = Date.now();
+            const remaining = Math.round((endTimeRef.current! - now) / 1000);
+
+            if (remaining <= 0) {
+                clearInterval(id);
+                intervalRef.current = null;
+                setTimerProgress(false);
+                setSeconds(0);
+                nextStage();
+                alarm();
+            } else {
+                setSeconds((prev) => (prev !== remaining ? remaining : prev));
+            }
+        }, 1000); // Voltamos para 1000ms, que é o ritmo natural do relógio
 
         intervalRef.current = id;
     }
@@ -123,7 +124,6 @@ export default function Timer() {
                             className={timerProgress ? "pause-btn" : ""} 
                             onClick={timerProgress ? stopStopwatch : initStopwatch} 
                             type="button"
-                            // Removi o onKeyDown daqui para não dar conflito com o global
                         >
                             {timerProgress ? "PAUSAR" : "INICIAR"}
                         </button>

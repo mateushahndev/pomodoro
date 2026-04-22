@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 35px;
     list-style: none;
 }
@@ -34,6 +35,7 @@
     border-radius: var(--lil-radius);
     padding: .2rem .6rem;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .selected {
@@ -71,4 +73,30 @@
     border: 1px solid #f1f1f1;
     background-color: var(--primary-background);
     color: var(--primary-font-color);
+}
+
+/************Mobile***************/
+
+@media (max-width: 768px) {
+    .pomodoro-container {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .pomodoro-timer .timer {
+        padding-top: .4rem;
+    }
+
+    .pomodoro-timer .timer p {
+        font-size: 4rem;
+    }
+
+    .pomodoro-options ul {
+        gap: 15px;
+    }
+
+    .timer-btn button {
+        padding: 0.5rem 2rem;
+        font-size: 1.2rem;
+    }
 }

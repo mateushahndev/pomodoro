@@ -19,6 +19,7 @@
 body {
   background-color: var(--primary-background);
 }
+
 a {
   color: inherit;
   text-decoration: none;

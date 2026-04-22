@@ -151,3 +151,20 @@
 .modal-body {
     padding-right: 0 !important; 
 }
+
+/**************Mobile************/
+
+@media (max-width: 768px) {
+    .tasks {
+        padding-inline: 1rem; /* Muito mais espaço no mobile */
+    }
+
+    .tasks h2 {
+        font-size: 1.8rem; /* Título um pouco menor */
+        padding-bottom: 1.5rem;
+    }
+    
+    .tasks-list {
+        justify-content: center; /* Centraliza as tags no mobile */
+    }
+}
