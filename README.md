@@ -2,6 +2,8 @@
 
 Aplicação de timer Pomodoro com gerenciamento de tarefas, desenvolvida em React com TypeScript. Combina o ciclo de foco e pausas da técnica Pomodoro com uma lista de tarefas persistida no navegador.
 
+Site: https://pomodoro-fawn-mu.vercel.app/
+
 ## Funcionalidades
 
 ### Timer
